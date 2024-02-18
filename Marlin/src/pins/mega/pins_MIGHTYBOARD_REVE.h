@@ -154,13 +154,21 @@
 #define MOSFET_5_PIN                          45  // Plug HBD 1-2 -> PL4 #39 -> Logical 45
 #define MOSFET_6_PIN                          44  // Plug Extra 1-2 -> PL5 #40 -> Logical 44 (FET not soldered in all boards)
 
+// Valentin's Pinout Map
+// MOSFET 1 = Heater 0
+// MOSFET 2 = Fan 0
+// MOSFET 3 = Heater 1
+// MOSFET 4 = Fan 1
+// MOSFET 5 = Heatbed
+// MOSFET 6 = ???
+
 //
 // Heaters / Fans (24V)
 //
 
-#define HEATER_0_PIN                MOSFET_1_PIN // EX1
+#define HEATER_0_PIN                MOSFET_5_PIN // EX1
 #define HEATER_1_PIN                MOSFET_3_PIN // EX2
-#define HEATER_BED_PIN              MOSFET_5_PIN // HBP
+//#define HEATER_BED_PIN              MOSFET_5_PIN // HBP
 
 // EX1 FAN (Automatic Fans are disabled by default in Configuration_adv.h - comment that out for auto fans)
 #ifndef E0_AUTO_FAN_PIN
@@ -175,9 +183,13 @@
   #define E1_AUTO_FAN_PIN           MOSFET_4_PIN
 #else
   #ifndef FAN1_PIN
-    #define FAN1_PIN                MOSFET_4_PIN
+    //#define FAN1_PIN                MOSFET_4_PIN
   #endif
 #endif
+
+#define SPINDLE_LASER_ENA_PIN MOSFET_4_PIN
+#define SPINDLE_LASER_PWM_PIN MOSFET_1_PIN
+#define AIR_ASSIST_PIN        MOSFET_6_PIN
 
 //
 // Misc. Functions
@@ -219,8 +231,8 @@
     #define SR_CLK_PIN                        35  // C2
     #define SR_STROBE_PIN                     33  // C4
 
-    #define BTN_UP                            75  // J4
-    #define BTN_DWN                           73  // J3
+    #define BTN_UP                            73  // J4
+    #define BTN_DWN                           75  // J3
     #define BTN_LFT                           72  // J2
     #define BTN_RT                            14  // J1
 

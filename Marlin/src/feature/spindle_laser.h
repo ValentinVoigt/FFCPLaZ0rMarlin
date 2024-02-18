@@ -137,22 +137,22 @@ public:
     static void set_ocr(const uint8_t ocr);
     static void ocr_off();
 
-    /**
-     * Update output for power->OCR translation
-     */
-    static uint8_t upower_to_ocr(const cutter_power_t upwr) {
-      return uint8_t(
-        #if CUTTER_UNIT_IS(PWM255)
-          upwr
-        #elif CUTTER_UNIT_IS(PERCENT)
-          pct_to_ocr(upwr)
-        #else
-          pct_to_ocr(cpwr_to_pct(upwr))
-        #endif
-      );
-    }
-
   #endif // SPINDLE_LASER_USE_PWM
+
+  /**
+   * Update output for power->OCR translation
+   */
+  static uint8_t upower_to_ocr(const cutter_power_t upwr) {
+    return uint8_t(
+      #if CUTTER_UNIT_IS(PWM255)
+        upwr
+      #elif CUTTER_UNIT_IS(PERCENT)
+        pct_to_ocr(upwr)
+      #else
+        pct_to_ocr(cpwr_to_pct(upwr))
+      #endif
+    );
+  }
 
   /**
    * Correct power to configured range
